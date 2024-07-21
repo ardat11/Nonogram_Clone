@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFilled: 0
+  RANDOMCREATION: 1
   render: {fileID: 7952197784502969451}
   colors:
   - {fileID: 2100000, guid: bc43d8adee96b364891afaf89c9e3943, type: 2}

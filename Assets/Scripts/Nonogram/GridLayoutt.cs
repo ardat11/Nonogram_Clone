@@ -5,13 +5,16 @@ using UnityEngine;
 public class GridLayoutt : MonoBehaviour
 {
     public static GridLayoutt instance;
+
+    [SerializeField] private bool GRIDCREATOR;
+
     [SerializeField] private GameObject NodePrefab;
     [SerializeField] private GameObject TextWriter;
     [SerializeField] private int yatay;
     [SerializeField] private int dikey;
-    private GameObject[] Blocks;
+    [SerializeField] private GameObject[] Blocks;
     private int i;
-
+    
     private void Awake()
     {
         instance = this;
@@ -19,29 +22,32 @@ public class GridLayoutt : MonoBehaviour
     void Start()
     {   
         System.Array.Resize(ref Blocks, yatay*dikey);
-        for(int x = 0; x <= yatay; x++ )
-        {   
-            for( int y = dikey; y>= 0; y-- )
+        if (GRIDCREATOR)
+        {
+            for (int x = 0; x <= yatay; x++)
             {
-                Vector3 diff = new Vector3(x*NodePrefab.transform.localScale.x,y*NodePrefab.transform.localScale.y,0);
-                if(x==0 && y==dikey)
+                for (int y = dikey; y >= 0; y--)
                 {
-                  
-                }
-                else if (diff.x == 0 || diff.y == dikey)
-                {   
-                    GameObject writer = Instantiate(TextWriter, transform.position + diff, Quaternion.identity, transform);
-                    FillDecider write = writer.GetComponent<FillDecider>();
-                    if(diff.y == dikey)
+                    Vector3 diff = new Vector3(x * NodePrefab.transform.localScale.x, y * NodePrefab.transform.localScale.y, 0);
+                    if (x == 0 && y == dikey)
                     {
-                        write.Line = Line.dikey;
+
                     }
-                }
-                else
-                {
-                    GameObject block =  Instantiate(NodePrefab, transform.position + diff, Quaternion.identity, transform);
-                    Blocks[i] = block;
-                    i++;
+                    else if (diff.x == 0 || diff.y == dikey)
+                    {
+                        GameObject writer = Instantiate(TextWriter, transform.position + diff, Quaternion.identity, transform);
+                        FillDecider write = writer.GetComponent<FillDecider>();
+                        if (diff.y == dikey)
+                        {
+                            write.Line = Line.dikey;
+                        }
+                    }
+                    else
+                    {
+                        GameObject block = Instantiate(NodePrefab, transform.position + diff, Quaternion.identity, transform);
+                        Blocks[i] = block;
+                        i++;
+                    }
                 }
             }
         }

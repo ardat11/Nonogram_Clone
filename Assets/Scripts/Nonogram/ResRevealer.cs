@@ -6,19 +6,23 @@ using UnityEngine;
 public class ResRevealer : MonoBehaviour
 {
     public bool isFilled;
+    public bool RANDOMCREATION;
     [SerializeField] private SpriteRenderer render;
     [SerializeField] private Material[] colors;
 
     private void Awake()
     {
-        int i = Random.Range(0, 2);
-        if(i == 0)
+        if (RANDOMCREATION)
         {
-            isFilled = false;
-        }
-        else
-        {
-            isFilled = true;
+            int i = Random.Range(0, 2);
+            if (i == 0)
+            {
+                isFilled = false;
+            }
+            else
+            {
+                isFilled = true;
+            }
         }
     }
 

@@ -14,6 +14,9 @@ public class TouchManager : MonoBehaviour
         instance = this;
         touchType = TouchType.Fill;
     }
+
+    
+
     void Update()
     {
         if(Input.GetMouseButton(0))
@@ -39,6 +42,10 @@ public class TouchManager : MonoBehaviour
     {
         return (int)touchType;
     }
+
+
+
+
 
 }
 enum TouchType

@@ -21,6 +21,7 @@ public class FillDecider : MonoBehaviour
     {
         Blocks = GridLayoutt.instance.GetBlocks();
         System.Array.Resize(ref hizaliblocks, Blocks.Length);
+        text.text = null;
 
         if(Line == Line.dikey)
         {

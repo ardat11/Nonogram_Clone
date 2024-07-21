@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NonogramOpener : MonoBehaviour
@@ -23,5 +24,12 @@ public class NonogramOpener : MonoBehaviour
             }
 
         }
+        if(Input.GetMouseButton(1))
+        {
+            ResRevealer result = GetComponent<ResRevealer>();
+            result.isFilled = true;
+        }    
     }
+    
+
 }
