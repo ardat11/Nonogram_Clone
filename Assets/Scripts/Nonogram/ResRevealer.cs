@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,7 +11,8 @@ public class ResRevealer : MonoBehaviour
     public bool RANDOMCREATION;
     [SerializeField] private SpriteRenderer render;
     [SerializeField] private Material[] colors;
-
+    private bool Revealed;
+    public List<FillDecider> Fillers;
     private void Awake()
     {
         if (RANDOMCREATION)
@@ -24,6 +27,7 @@ public class ResRevealer : MonoBehaviour
                 isFilled = true;
             }
         }
+        
     }
 
     public void SetIsFilled(bool a)
@@ -36,11 +40,15 @@ public class ResRevealer : MonoBehaviour
     }
 
     public void Reveal()
-    {
+    {   
+        StackTrace stackTrace = new StackTrace();
+        MethodBase caller = stackTrace.GetFrame(1).GetMethod();
+        string callerName = caller.Name;
+        
         if(isFilled)
         {   
             render.sharedMaterial = colors[0];
-            if(TouchManager.instance.GetTouchType() ==1)
+            if(TouchManager.instance.GetTouchType() ==1 && callerName == "OnMouseOver")
             {
                 HealthManager.Instance.DecreaseHealth();
             }
@@ -49,12 +57,25 @@ public class ResRevealer : MonoBehaviour
         else
         {
             render.sharedMaterial = colors[1];
-            if (TouchManager.instance.GetTouchType() == 0)
+            if (TouchManager.instance.GetTouchType() == 0 && callerName == "OnMouseOver")
             {
                 HealthManager.Instance.DecreaseHealth();
             }
             FinishManager.instance.BlockOpened();
         }
+        Revealed = true;
+        CallForReveal();
 
+
+    }
+    private void CallForReveal()
+    {
+        Fillers[0].SetCheck();
+        Fillers[1].SetCheck();
+    }
+
+    public bool GetRevealed()
+    {
+        return Revealed;
     }
 }

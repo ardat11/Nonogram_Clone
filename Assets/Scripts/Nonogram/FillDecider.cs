@@ -16,6 +16,7 @@ public class FillDecider : MonoBehaviour
     private int spaces;
     [SerializeField] private TMP_Text text;
     private string lastEvent;
+    private int truecount;
 
     private void Start()
     {
@@ -30,6 +31,8 @@ public class FillDecider : MonoBehaviour
                 if (Blocks[i].transform.position.x == transform.position.x) // ayný hizada ise
                 {
                     hizaliblocks[k] = Blocks[i];
+                    ResRevealer revealer = hizaliblocks[k].GetComponent<ResRevealer>();
+                    revealer.Fillers.Add(this);
                     k++;
                 }
             }
@@ -42,6 +45,8 @@ public class FillDecider : MonoBehaviour
                 if (Blocks[i].transform.position.y == transform.position.y) // ayný hizada ise
                 {
                     hizaliblocks[k] = Blocks[i];
+                    ResRevealer revealer = hizaliblocks[k].GetComponent<ResRevealer>();
+                    revealer.Fillers.Add(this);
                     k++;
                 }
             }
@@ -80,7 +85,47 @@ public class FillDecider : MonoBehaviour
         }
 
     }
+    public void SetCheck()
+    {
+        print("SetCheckk");
+        for (int i = 0; i < hizaliblocks.Length; i++)
+        {
+            ResRevealer Block = hizaliblocks[i].GetComponent<ResRevealer>();
+            if (Block.GetIsFilled() && Block.GetRevealed())
+            {
+                truecount++;
+            }
+            if (truecount == SumArray(ints))
+            {
+                RevealAll();
+                break;
+            }
+            
 
+        }
+        truecount = 0;
+    }
+
+    public void RevealAll()
+    {
+        for(int i = 0; i < hizaliblocks.Length; i++)
+        {
+            ResRevealer Block = hizaliblocks[i].GetComponent<ResRevealer>();
+            if (!Block.GetRevealed())
+            {
+                Block.Reveal();
+            }
+        }
+    }
+    private int SumArray(int[] array)
+    {
+        int sum = 0;
+        foreach (int number in array)
+        {
+            sum += number;
+        }
+        return sum;
+    }
     private void ListShorten()
     {
         for (int i = 0; i < hizaliblocks.Length; i++)
@@ -101,6 +146,13 @@ public class FillDecider : MonoBehaviour
             }
         }
     }
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.V))
+    //    {
+    //        SetCheck();
+    //    }
+    //}
 }
 
 
