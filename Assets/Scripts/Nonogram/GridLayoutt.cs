@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class GridLayoutt : MonoBehaviour
@@ -68,4 +69,5 @@ public class GridLayoutt : MonoBehaviour
     {
         Gizmos.DrawWireCube(transform.position + new Vector3(yatay / 2, dikey / 2, 0), new Vector3(yatay+1, dikey+1, 0));
     }
+    
 }

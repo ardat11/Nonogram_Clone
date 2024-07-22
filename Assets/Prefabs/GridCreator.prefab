@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b1327eca8c47143afd5acdc1921640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GRIDCREATOR: 1
   NodePrefab: {fileID: 7952197785837692165, guid: e6f8f6daa196a4a46a76d52bb716d3f3, type: 3}
   TextWriter: {fileID: 6861617384329023364, guid: 85f02b35dadac37479f427f6eb6587b3, type: 3}
   yatay: 10
   dikey: 10
+  Blocks: []

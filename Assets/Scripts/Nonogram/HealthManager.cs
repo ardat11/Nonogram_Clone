@@ -12,6 +12,7 @@ public class HealthManager : MonoBehaviour
     public Image Heart1;
     public Image Heart2;
     public Image Heart3;
+    [SerializeField] private Sprite EmptyHeart;
     [SerializeField] private int health =3;
     [SerializeField] private GameObject LosePanel;
     [SerializeField] private TMP_Text losescore;
@@ -28,15 +29,16 @@ public class HealthManager : MonoBehaviour
         health--;
         if (health == 2)
         {
-            Heart3.enabled = false;
+            Heart3.sprite = EmptyHeart;
+            
         }
         else if (health == 1)
         {
-            Heart2.enabled = false;
+            Heart2.sprite = EmptyHeart;
         }
         else if (health == 0)
         {
-            Heart1.enabled = false;
+            Heart1.sprite = EmptyHeart;
             //Time.timeScale = 0;
             FinishManager.instance.PlayerLost();
         }
