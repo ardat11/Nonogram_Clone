@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NonogramOpener : MonoBehaviour
@@ -12,7 +8,7 @@ public class NonogramOpener : MonoBehaviour
     {
         if (TouchManager.instance.GetIsMouseDown())
         {
-            print("Basýldý:" + gameObject.name);
+            print("Basï¿½ldï¿½:" + gameObject.name);
             BoxCollider2D collider = this.GetComponent<BoxCollider2D>();
             collider.enabled = false;
             ResRevealer result = GetComponent<ResRevealer>();

@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ResRevealer : MonoBehaviour
@@ -18,14 +16,7 @@ public class ResRevealer : MonoBehaviour
         if (RANDOMCREATION)
         {
             int i = Random.Range(0, 2);
-            if (i == 0)
-            {
-                isFilled = false;
-            }
-            else
-            {
-                isFilled = true;
-            }
+            isFilled = i % 2 == 0;
         }
         
     }
@@ -47,7 +38,8 @@ public class ResRevealer : MonoBehaviour
         
         if(isFilled)
         {   
-            render.sharedMaterial = colors[0];
+            // render.sharedMaterial = colors[0];
+            render.color = Color.blue;
             if(TouchManager.instance.GetTouchType() ==1 && callerName == "OnMouseOver")
             {
                 HealthManager.Instance.DecreaseHealth();
@@ -56,7 +48,8 @@ public class ResRevealer : MonoBehaviour
         }
         else
         {
-            render.sharedMaterial = colors[1];
+            // render.sharedMaterial = colors[1];
+            render.color = Color.red;
             if (TouchManager.instance.GetTouchType() == 0 && callerName == "OnMouseOver")
             {
                 HealthManager.Instance.DecreaseHealth();

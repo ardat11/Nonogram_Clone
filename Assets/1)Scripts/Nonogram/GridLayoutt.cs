@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class GridLayoutt : MonoBehaviour
@@ -32,7 +29,7 @@ public class GridLayoutt : MonoBehaviour
                     Vector3 diff = new Vector3(x * NodePrefab.transform.localScale.x, y * NodePrefab.transform.localScale.y, 0);
                     if (x == 0 && y == dikey)
                     {
-                        // Bilerek Boþ.
+                        // Bilerek Boï¿½.
                     }
                     else if (diff.x == 0 || diff.y == dikey)
                     {

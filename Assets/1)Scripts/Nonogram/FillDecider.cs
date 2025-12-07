@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 
@@ -26,9 +23,9 @@ public class FillDecider : MonoBehaviour
 
         if(Line == Line.dikey)
         {
-            for(int i = 0; i < Blocks.Length; i++) //taranan bloklar
+            for(int i = 0; i < Blocks.Length; i++) 
             {
-                if (Blocks[i].transform.position.x == transform.position.x) // ayný hizada ise
+                if (Mathf.Approximately(Blocks[i].transform.position.x, transform.position.x)) 
                 {
                     hizaliblocks[k] = Blocks[i];
                     ResRevealer revealer = hizaliblocks[k].GetComponent<ResRevealer>();
@@ -40,9 +37,9 @@ public class FillDecider : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < Blocks.Length; i++) //taranan bloklar
+            for (int i = 0; i < Blocks.Length; i++) 
             {
-                if (Blocks[i].transform.position.y == transform.position.y) // ayný hizada ise
+                if (Mathf.Approximately(Blocks[i].transform.position.y, transform.position.y)) 
                 {
                     hizaliblocks[k] = Blocks[i];
                     ResRevealer revealer = hizaliblocks[k].GetComponent<ResRevealer>();
